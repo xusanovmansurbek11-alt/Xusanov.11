@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple (Uzbekistan)</title>
+  <!-- Tailwind CSS for responsive utility layout -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter & Outfit Fonts to closely mirror Apple SF Pro Display / Text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       APPLE DESIGN SYSTEM TOKENS & CORE TYPOGRAPHY
+       ========================================================================== */
+    :root {
+      --apple-bg-primary: #fbfbfd;
+      --apple-bg-secondary: #f5f5f7;
+      --apple-bg-dark: #000000;
+      --apple-bg-dark-card: #0a0a0c;
+      --apple-text-dark: #1d1d1f;
+      --apple-text-muted: #6e6e73;
+      --apple-text-light: #f5f5f7;
+      --apple-blue: #0071e3;
+      --apple-blue-hover: #0077ed;
+      --apple-link: #0066cc;
+      --apple-border: rgba(0, 0, 0, 0.08);
+      --apple-glass: rgba(251, 251, 253, 0.82);
+      --apple-glass-dark: rgba(22, 22, 23, 0.82);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+      color: var(--apple-text-dark);
+      background-color: var(--apple-bg-primary);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       GLOBAL NAVIGATION & GLASSMORPHISM
+       ========================================================================== */
+    .apple-nav {
+      background: var(--apple-glass);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      transition: background-color 0.3s ease;
+    }
+
+    .apple-nav.dark-mode-nav {
+      background: rgba(22, 22, 23, 0.85);
+      color: #f5f5f7;
+    }
+
+    .mega-menu-drawer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.42s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.32s ease;
+      background: rgba(251, 251, 253, 0.96);
+      backdrop-filter: saturate(180%) blur(24px);
+    }
+
+    .mega-menu-drawer.open {
+      max-height: 460px;
+      opacity: 1;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .page-dimmer {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .page-dimmer.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       APPLE PILL BUTTONS
+       ========================================================================== */
+    .btn-apple-primary {
+      background-color: var(--apple-blue);
+      color: #ffffff;
+      border-radius: 980px;
+      font-size: 17px;
+      line-height: 1.17648;
+      font-weight: 400;
+      padding: 11px 22px;
+      transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .btn-apple-primary:hover {
+      background-color: var(--apple-blue-hover);
+      transform: scale(1.015);
+    }
+
+    .btn-apple-outline {
+      background-color: transparent;
+      color: var(--apple-blue);
+      border: 1px solid var(--apple-blue);
+      border-radius: 980px;
+      font-size: 17px;
+      line-height: 1.17648;
+      font-weight: 400;
+      padding: 10px 21px;
+      transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .btn-apple-outline:hover {
+      background-color: var(--apple-blue);
+      color: #ffffff;
+    }
+
+    .btn-apple-sm {
+      font-size: 14px;
+      padding: 8px 17px;
+    }
+
+    /* ==========================================================================
+       SCROLL REVEAL ANIMATIONS
+       ========================================================================== */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       PHOTOREALISTIC CSS HARDWARE RENDERS (SELF-CONTAINED, ZERO EXTERNAL ASSETS)
+       ========================================================================== */
+
+    /* 1. iPhone 17 Pro Titanium & Pro Fusion Camera Plateau */
+    .iphone-17-pro-chassis {
+      width: 290px;
+      height: 540px;
+      border-radius: 52px;
+      padding: 11px;
+      position: relative;
+      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow:
+        0 35px 80px -15px rgba(0, 0, 0, 0.85),
+        0 0 0 1.5px rgba(255, 255, 255, 0.22) inset,
+        0 2px 12px rgba(255, 255, 255, 0.18) inset;
+    }
+
+    @media (min-width: 768px) {
+      .iphone-17-pro-chassis {
+        width: 320px;
+        height: 580px;
+      }
+    }
+
+    .iphone-finish-deepblue {
+      background: linear-gradient(145deg, #273b56 0%, #162234 45%, #0d1522 100%);
+    }
+    .iphone-finish-natural {
+      background: linear-gradient(145deg, #c6c2b8 0%, #9b968c 50%, #787369 100%);
+    }
+    .iphone-finish-desert {
+      background: linear-gradient(145deg, #d7be9e 0%, #b19574 50%, #8a7052 100%);
+    }
+    .iphone-finish-black {
+      background: linear-gradient(145deg, #323336 0%, #1c1d1f 50%, #0e0e10 100%);
+    }
+
+    .camera-plateau {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      right: 22px;
+      height: 145px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(0,0,0,0.35));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      padding: 14px 16px;
+      gap: 10px;
+    }
+
+    .pro-lens {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #2b3545 0%, #090c12 58%, #020305 100%);
+      border: 3.5px solid rgba(210, 220, 235, 0.35);
+      box-shadow:
+        0 6px 14px rgba(0,0,0,0.7),
+        inset 0 0 10px rgba(80, 140, 255, 0.35);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+    }
+
+    .pro-lens::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #4da6ff 0%, #162e58 45%, #03060c 80%);
+      box-shadow: 0 0 8px rgba(77, 166, 255, 0.45);
+    }
+
+    .pro-lens::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      width: 10px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      transform: rotate(-32deg);
+    }
+
+    /* 2. iPad Air M4 Floating Display */
+    .ipad-air-frame {
+      width: 100%;
+      max-width: 680px;
+      aspect-ratio: 16 / 10.6;
+      background: #141416;
+      border-radius: 28px;
+      padding: 13px;
+      box-shadow:
+        0 30px 70px -15px rgba(0, 0, 0, 0.25),
+        0 0 0 2px #c8ccd0;
+      position: relative;
+      transition: transform 0.5s ease;
+    }
+
+    .ipad-air-frame:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    .ipad-m4-wallpaper {
+      width: 100%;
+      height: 100%;
+      border-radius: 17px;
+      background:
+        radial-gradient(circle at 20% 25%, #38bdf8 0%, transparent 48%),
+        radial-gradient(circle at 82% 22%, #a855f7 0%, transparent 45%),
+        radial-gradient(circle at 55% 78%, #2563eb 0%, transparent 55%),
+        linear-gradient(135deg, #090d16 0%, #1e1b4b 50%, #0f172a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 3. MacBook Air M5 Dual V-Formation */
+    .macbook-v-container {
+      perspective: 1400px;
+    }
+
+    .macbook-lid {
+      background: linear-gradient(145deg, #dce7f2 0%, #b7cadc 50%, #99b2c9 100%);
+      border-radius: 18px 18px 4px 4px;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    }
+
+    .macbook-base {
+      background: linear-gradient(90deg, #8ea6bd 0%, #dce7f2 25%, #c5d6e6 50%, #dce7f2 75%, #8ea6bd 100%);
+      height: 12px;
+      border-radius: 2px 2px 14px 14px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    /* 4. Entertainment Carousel Smooth Track */
+    .carousel-track {
+      display: flex;
+      gap: 18px;
+      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f5f5f7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c6;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8e8e93;
+    }
+  </style>
+</head>
+<body class="bg-[#fbfbfd] text-[#1d1d1f] selection:bg-[#0071e3] selection:text-white">
+
+  <!-- ==========================================================================
+       1. REGIONAL NOTICE RIBBON (AUTHENTIC APPLE.COM/UZ/ TOP BANNER)
+       ========================================================================== -->
+  <div id="regionBanner" class="bg-[#f5f5f7] border-b border-black/[0.08] text-[#1d1d1f] text-[12px] transition-all duration-300">
+    <div class="max-w-[1024px] mx-auto px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+      <p id="regionBannerText" class="text-[#1d1d1f]/85 leading-snug text-center sm:text-left">
+        Choose another country or region to see content specific to your location and shop online.
+      </p>
+      <div class="flex items-center gap-2.5 shrink-0">
+        <div class="relative">
+          <select id="regionSelect" aria-label="Choose country or region"
+            class="appearance-none bg-white border border-black/15 rounded-lg pl-3 pr-8 py-1.5 text-[12px] font-medium text-[#1d1d1f] focus:outline-none focus:border-[#0071e3] cursor-pointer">
+            <option value="uz" selected>🇺🇿 Uzbekistan</option>
+            <option value="us">🇺🇸 United States</option>
+            <option value="ae">🇦🇪 United Arab Emirates</option>
+            <option value="kz">🇰🇿 Kazakhstan</option>
+            <option value="tr">🇹🇷 Türkiye</option>
+          </select>
+          <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-[#6e6e73]">▼</span>
+        </div>
+        <button onclick="dismissRegionBanner()"
+          class="bg-[#1d1d1f] hover:bg-black text-white text-[12px] font-medium px-3.5 py-1.5 rounded-lg transition cursor-pointer">
+          Continue
+        </button>
+        <button onclick="dismissRegionBanner()" aria-label="Close region banner"
+          class="p-1 text-[#6e6e73] hover:text-[#1d1d1f] transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. STICKY GLOBAL APPLE NAVIGATION BAR + MEGA MENU DRAWERS
+       ========================================================================== -->
+  <header id="globalHeader" class="apple-nav sticky top-0 z-50 border-b border-black/[0.06]" onmouseleave="closeMegaMenu()">
+    <nav class="max-w-[1024px] mx-auto px-4 h-[44px] flex items-center justify-between text-[12px] font-normal tracking-[-0.01em]">
+      <!-- Apple Logo -->
+      <a href="#top" aria-label="Apple Uzbekistan Home" class="text-[#1d1d1f]/85 hover:text-[#1d1d1f] transition py-2 flex items-center">
+        <svg class="w-[15px] h-[18px] fill-current" viewBox="0 0 17 20">
+          <path d="M13.54 10.55c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.56-1.67-3.11-1.69-1.32-.14-2.59.78-3.26.78-.68 0-1.72-.76-2.83-.74-1.45.02-2.79.85-3.54 2.15-1.51 2.62-.38 6.5 1.08 8.62.72 1.04 1.57 2.2 2.69 2.16 1.08-.04 1.49-.7 2.8-.7 1.3 0 1.67.7 2.81.68 1.16-.02 1.9-1.05 2.61-2.1.82-1.2 1.16-2.37 1.18-2.43-.03-.01-2.25-.86-2.27-3.48zM11.4 4.22c.6-.73 1-1.74.89-2.75-.86.04-1.91.57-2.53 1.3-.55.63-1.03 1.66-.9 2.65.96.07 1.94-.48 2.54-1.2z"/>
+        </svg>
+      </a>
+
+      <!-- Desktop Category Links (Matching apple.com/uz/ exact navigation) -->
+      <div class="hidden md:flex items-center justify-between flex-1 max-w-[780px] px-6 text-[#1d1d1f]/80">
+        <button onmouseenter="openMegaMenu('mac')" onclick="openMegaMenu('mac')" class="hover:text-black transition py-2 cursor-pointer">Mac</button>
+        <button onmouseenter="openMegaMenu('ipad')" onclick="openMegaMenu('ipad')" class="hover:text-black transition py-2 cursor-pointer">iPad</button>
+        <button onmouseenter="openMegaMenu('iphone')" onclick="openMegaMenu('iphone')" class="hover:text-black transition py-2 cursor-pointer">iPhone</button>
+        <button onmouseenter="openMegaMenu('watch')" onclick="openMegaMenu('watch')" class="hover:text-black transition py-2 cursor-pointer">Watch</button>
+        <button onmouseenter="openMegaMenu('airpods')" onclick="openMegaMenu('airpods')" class="hover:text-black transition py-2 cursor-pointer">AirPods</button>
+        <button onmouseenter="openMegaMenu('tv')" onclick="openMegaMenu('tv')" class="hover:text-black transition py-2 cursor-pointer">TV & Home</button>
+        <button onmouseenter="openMegaMenu('entertainment')" onclick="openMegaMenu('entertainment')" class="hover:text-black transition py-2 cursor-pointer">Entertainment</button>
+        <button onmouseenter="openMegaMenu('support')" onclick="openMegaMenu('support')" class="hover:text-black transition py-2 cursor-pointer">Support</button>
+        <button onclick="openWhereToBuyModal()" class="hover:text-black transition py-2 font-medium text-[#0066cc] cursor-pointer">Where to Buy</button>
+      </div>
+
+      <!-- Right Controls: Language Toggle (EN/UZ), Search, Mobile Menu -->
+      <div class="flex items-center gap-3.5">
+        <button id="langToggleBtn" onclick="toggleLanguage()" title="Switch EN / O'Z"
+          class="text-[11px] font-semibold px-2 py-0.5 rounded-full border border-black/15 hover:border-[#0071e3] hover:text-[#0071e3] transition cursor-pointer">
+          UZ / EN
+        </button>
+
+        <button onclick="openSearchOverlay()" aria-label="Search apple.com/uz" class="text-[#1d1d1f]/80 hover:text-black transition p-1 cursor-pointer">
+          <svg class="w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7.5"/>
+            <path stroke-linecap="round" d="M20.5 20.5l-4.2-4.2"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button onclick="toggleMobileDrawer()" aria-label="Menu" class="md:hidden text-[#1d1d1f]/85 hover:text-black p-1 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Interactive Mega-Menu Dropdown Drawer -->
+    <div id="megaMenuDrawer" class="mega-menu-drawer w-full">
+      <div id="megaMenuContent" class="max-w-[1024px] mx-auto px-6 py-9 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Backdrop Blur Dimmer for Mega Menu -->
+  <div id="pageDimmer" onclick="closeMegaMenu()" class="page-dimmer fixed inset-0 z-40"></div>
+
+  <!-- Mobile Full-Screen Apple Menu Drawer -->
+  <div id="mobileMenuDrawer" class="fixed inset-0 z-50 bg-[#fbfbfd] hidden flex-col px-8 pt-16 pb-10 overflow-y-auto">
+    <button onclick="toggleMobileDrawer()" aria-label="Close menu" class="absolute top-4 right-5 p-2 text-[#1d1d1f]">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="flex flex-col gap-4 text-[26px] font-semibold tracking-tight text-[#1d1d1f]">
+      <a href="#section-macbook-air" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">Mac</a>
+      <a href="#section-ipad-air" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">iPad</a>
+      <a href="#section-iphone-17-pro" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">iPhone</a>
+      <a href="#section-bento" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">Watch</a>
+      <a href="#section-bento" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">AirPods</a>
+      <a href="#section-entertainment" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">TV & Home</a>
+      <a href="#section-entertainment" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">Entertainment</a>
+      <a href="#footer" onclick="toggleMobileDrawer()" class="hover:text-[#0071e3]">Support</a>
+      <button onclick="toggleMobileDrawer(); openWhereToBuyModal();" class="text-left text-[#0071e3] mt-2">
+        Where to Buy in Uzbekistan →
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3. HERO SECTION 1: iPhone 17 Pro (DARK OBSIDIAN TITANIUM SHOWCASE)
+       ========================================================================== -->
+  <main id="top">
+    <section id="section-iphone-17-pro" class="relative bg-black text-[#f5f5f7] pt-14 md:pt-16 pb-0 overflow-hidden border-b-[12px] border-[#fbfbfd]">
+      <!-- Subtle ambient glow behind hardware -->
+      <div id="iphoneAmbientGlow" class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[680px] h-[420px] rounded-full blur-[130px] opacity-40 bg-[#1d4ed8] transition-colors duration-700"></div>
+
+      <div class="relative z-10 max-w-[1024px] mx-auto px-4 text-center flex flex-col items-center">
+        <span class="text-[#f56300] text-[13px] font-semibold tracking-wide uppercase mb-1.5">New</span>
+        <h1 class="text-[40px] sm:text-[52px] md:text-[56px] font-semibold tracking-[-0.025em] leading-[1.07]">
+          iPhone 17 Pro
+        </h1>
+        <p id="hero1Subtitle" class="mt-2 text-[21px] sm:text-[26px] md:text-[28px] font-normal tracking-[-0.015em] text-[#f5f5f7]/90">
+          Meet the latest iPhone lineup.
+        </p>
+
+        <!-- Primary & Secondary Pill CTAs -->
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-3.5">
+          <button onclick="openProductModal('iphone17pro')" class="btn-apple-primary">
+            <span data-i18n="learnMore">Learn more</span>
+          </button>
+          <button onclick="openWhereToBuyModal('iPhone 17 Pro')" class="btn-apple-outline">
+            <span data-i18n="whereToBuy">Where to Buy</span>
+          </button>
+        </div>
+
+        <!-- Interactive Titanium Finish Switcher -->
+        <div class="mt-6 flex items-center gap-3 bg-white/[0.08] backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+          <span id="iphoneFinishLabel" class="text-[12px] text-[#a1a1a6] font-medium mr-1">Deep Blue Titanium</span>
+          <button onclick="setIphoneFinish('deepblue', 'Deep Blue Titanium', '#1d4ed8')" aria-label="Deep Blue Titanium"
+            class="w-5 h-5 rounded-full bg-[#243b59] ring-2 ring-offset-2 ring-offset-black ring-white transition cursor-pointer"></button>
+          <button onclick="setIphoneFinish('natural', 'Natural Titanium', '#a8a29e')" aria-label="Natural Titanium"
+            class="w-5 h-5 rounded-full bg-[#b9b4aa] hover:scale-110 transition cursor-pointer"></button>
+          <button onclick="setIphoneFinish('desert', 'Desert Titanium', '#d97706')" aria-label="Desert Titanium"
+            class="w-5 h-5 rounded-full bg-[#cbb08e] hover:scale-110 transition cursor-pointer"></button>
+          <button onclick="setIphoneFinish('black', 'Black Titanium', '#3f3f46')" aria-label="Black Titanium"
+            class="w-5 h-5 rounded-full bg-[#252629] hover:scale-110 transition cursor-pointer"></button>
+        </div>
+
+        <!-- Photorealistic CSS/SVG iPhone 17 Pro Hardware Render -->
+        <div class="mt-10 md:mt-12 relative flex justify-center w-full">
+          <div id="iphoneChassis" class="iphone-17-pro-chassis iphone-finish-deepblue translate-y-6 hover:translate-y-2 cursor-pointer" onclick="openProductModal('iphone17pro')">
+            <!-- Pro Fusion Triple Camera Plateau -->
+            <div class="camera-plateau">
+              <div class="pro-lens" title="48MP Fusion Main"></div>
+              <div class="pro-lens" title="48MP Ultra Wide"></div>
+              <div class="pro-lens" title="48MP 5x Tetraprism Telephoto"></div>
+            </div>
+
+            <!-- TrueTone Adaptive Flash & LiDAR Scanner -->
+            <div class="absolute top-[52px] right-[34px] flex flex-col items-center gap-12 pointer-events-none">
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-100/90 border border-white/40 shadow-inner"></div>
+              <div class="w-4 h-4 rounded-full bg-[#090b10] border border-white/25"></div>
+            </div>
+
+            <!-- Precision Brushed Apple Emblem on Matte Back Glass -->
+            <div class="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
+              <svg class="w-14 h-16 fill-white" viewBox="0 0 17 20">
+                <path d="M13.54 10.55c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.56-1.67-3.11-1.69-1.32-.14-2.59.78-3.26.78-.68 0-1.72-.76-2.83-.74-1.45.02-2.79.85-3.54 2.15-1.51 2.62-.38 6.5 1.08 8.62.72 1.04 1.57 2.2 2.69 2.16 1.08-.04 1.49-.7 2.8-.7 1.3 0 1.67.7 2.81.68 1.16-.02 1.9-1.05 2.61-2.1.82-1.2 1.16-2.37 1.18-2.43-.03-.01-2.25-.86-2.27-3.48zM11.4 4.22c.6-.73 1-1.74.89-2.75-.86.04-1.91.57-2.53 1.3-.55.63-1.03 1.66-.9 2.65.96.07 1.94-.48 2.54-1.2z"/>
+              </svg>
+            </div>
+
+            <!-- Subtle A19 Pro Chip Badge -->
+            <div class="absolute bottom-14 left-1/2 -translate-x-1/2 text-[11px] tracking-[0.22em] uppercase text-white/35 font-semibold">
+              A19 PRO · TITANIUM
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. HERO SECTION 2: iPad Air (NOW SUPERCHARGED BY M4)
+         ========================================================================== -->
+    <section id="section-ipad-air" class="reveal-section bg-[#f5f5f7] text-[#1d1d1f] pt-14 md:pt-16 pb-14 border-b-[12px] border-[#fbfbfd]">
+      <div class="max-w-[1024px] mx-auto px-4 text-center flex flex-col items-center">
+        <!-- Apple Stylistic "iPad air" Wordmark -->
+        <h2 class="text-[40px] sm:text-[52px] md:text-[56px] font-semibold tracking-[-0.025em] leading-[1.07] flex items-baseline justify-center gap-1.5">
+          <span>iPad</span>
+          <span class="font-light italic bg-gradient-to-r from-[#0071e3] via-[#5e5ce6] to-[#bf5af2] bg-clip-text text-transparent pr-1">air</span>
+        </h2>
+        <p id="hero2Subtitle" class="mt-2 text-[21px] sm:text-[26px] md:text-[28px] font-normal tracking-[-0.015em] text-[#1d1d1f]">
+          Now supercharged by M4.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-3.5">
+          <button onclick="openProductModal('ipadair')" class="btn-apple-primary">
+            <span data-i18n="learnMore">Learn more</span>
+          </button>
+          <button onclick="openWhereToBuyModal('iPad Air (M4)')" class="btn-apple-outline">
+            <span data-i18n="whereToBuy">Where to Buy</span>
+          </button>
+        </div>
+
+        <!-- Floating iPad Air M4 + Apple Pencil Pro Render -->
+        <div class="mt-10 md:mt-12 w-full flex flex-col items-center relative">
+          <!-- Sleek Apple Pencil Pro hovering above -->
+          <div class="mb-4 w-[280px] sm:w-[360px] h-[11px] rounded-full bg-gradient-to-r from-gray-200 via-white to-gray-300 shadow-md border border-black/10 flex items-center justify-between px-3">
+            <span class="text-[8px] font-semibold tracking-wider text-gray-500 uppercase"> Pencil Pro</span>
+            <div class="w-3 h-full bg-gray-100 border-l border-gray-300 rounded-r-full"></div>
+          </div>
+
+          <div class="ipad-air-frame cursor-pointer" onclick="openProductModal('ipadair')">
+            <div class="ipad-m4-wallpaper flex flex-col items-center justify-center p-6 text-white">
+              <!-- Dynamic Liquid Light Waves -->
+              <svg class="absolute inset-0 w-full h-full opacity-75" viewBox="0 0 800 500" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="m4Wave1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/>
+                    <stop offset="50%" stop-color="#818cf8" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#e879f9" stop-opacity="0.85"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,320 C220,140 520,440 800,180 L800,500 L0,500 Z" fill="url(#m4Wave1)"/>
+                <path d="M0,120 C280,290 540,40 800,260 L800,0 L0,0 Z" fill="rgba(56,189,248,0.28)"/>
+              </svg>
+
+              <!-- Center Glass M4 Silicon Chip Badge -->
+              <div class="relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-black/55 backdrop-blur-xl border border-white/25 shadow-2xl flex flex-col items-center justify-center">
+                <span class="text-white/70 text-[11px] font-medium tracking-widest uppercase">Apple</span>
+                <span class="text-white text-[34px] sm:text-[40px] font-bold tracking-tight leading-none mt-0.5">M4</span>
+              </div>
+
+              <!-- iPadOS Dock -->
+              <div class="relative z-10 mt-auto bg-white/20 backdrop-blur-xl border border-white/25 rounded-2xl px-4 py-2 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 shadow"></div>
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow"></div>
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow"></div>
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-400 to-indigo-600 shadow"></div>
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-400 to-pink-600 shadow"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. HERO SECTION 3: MacBook Air (NOW SUPERCHARGED BY M5)
+         ========================================================================== -->
+    <section id="section-macbook-air" class="reveal-section bg-gradient-to-b from-[#e8f2fa] via-[#f4f8fc] to-[#fbfbfd] text-[#1d1d1f] pt-14 md:pt-16 pb-16 border-b-[12px] border-[#fbfbfd]">
+      <div class="max-w-[1024px] mx-auto px-4 text-center flex flex-col items-center">
+        <span class="text-[#0066cc] text-[13px] font-semibold tracking-wide uppercase mb-1">New Sky Blue Finish</span>
+        <h2 class="text-[40px] sm:text-[52px] md:text-[56px] font-semibold tracking-[-0.025em] leading-[1.07]">
+          MacBook Air
+        </h2>
+        <p id="hero3Subtitle" class="mt-2 text-[21px] sm:text-[26px] md:text-[28px] font-normal tracking-[-0.015em] text-[#1d1d1f]">
+          Now supercharged by M5.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-3.5">
+          <button onclick="openProductModal('macbookair')" class="btn-apple-primary">
+            <span data-i18n="learnMore">Learn more</span>
+          </button>
+          <button onclick="openWhereToBuyModal('MacBook Air (M5)')" class="btn-apple-outline">
+            <span data-i18n="whereToBuy">Where to Buy</span>
+          </button>
+        </div>
+
+        <!-- Dual Sky Blue MacBook Air V-Formation Render -->
+        <div class="mt-12 w-full max-w-[760px] macbook-v-container cursor-pointer" onclick="openProductModal('macbookair')">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+            <!-- Left Open MacBook Air -->
+            <div class="flex flex-col items-center transform md:-rotate-2 hover:rotate-0 transition duration-500">
+              <div class="w-full max-w-[340px] aspect-[16/10] bg-[#0b0d12] rounded-t-2xl p-2 border-[2px] border-[#b8cde0] shadow-2xl relative overflow-hidden">
+                <!-- Notch -->
+                <div class="w-12 h-2 bg-black rounded-b-md mx-auto"></div>
+                <!-- Liquid Retina Sky Blue Wallpaper -->
+                <div class="w-full h-[calc(100%-8px)] rounded-lg bg-gradient-to-tr from-[#0284c7] via-[#38bdf8] to-[#e0f2fe] flex items-center justify-center relative overflow-hidden">
+                  <div class="w-32 h-32 rounded-full bg-white/35 blur-xl"></div>
+                  <span class="relative z-10 text-white font-semibold text-[18px] tracking-tight drop-shadow">macOS · M5</span>
+                </div>
+              </div>
+              <div class="w-[108%] max-w-[368px] macbook-base"></div>
+            </div>
+
+            <!-- Right Angled Razor-Thin Profile MacBook Air -->
+            <div class="flex flex-col items-center transform md:rotate-2 hover:rotate-0 transition duration-500">
+              <div class="w-full max-w-[340px] aspect-[16/10] macbook-lid flex flex-col items-center justify-center relative">
+                <svg class="w-10 h-12 fill-[#5c768d]/60" viewBox="0 0 17 20">
+                  <path d="M13.54 10.55c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.56-1.67-3.11-1.69-1.32-.14-2.59.78-3.26.78-.68 0-1.72-.76-2.83-.74-1.45.02-2.79.85-3.54 2.15-1.51 2.62-.38 6.5 1.08 8.62.72 1.04 1.57 2.2 2.69 2.16 1.08-.04 1.49-.7 2.8-.7 1.3 0 1.67.7 2.81.68 1.16-.02 1.9-1.05 2.61-2.1.82-1.2 1.16-2.37 1.18-2.43-.03-.01-2.25-.86-2.27-3.48zM11.4 4.22c.6-.73 1-1.74.89-2.75-.86.04-1.91.57-2.53 1.3-.55.63-1.03 1.66-.9 2.65.96.07 1.94-.48 2.54-1.2z"/>
+                </svg>
+                <span class="mt-2 text-[11px] font-semibold tracking-[0.2em] text-[#476078] uppercase">11.3 mm Thin · Sky Blue</span>
+              </div>
+              <div class="w-[106%] max-w-[360px] macbook-base"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. 2-COLUMN RESPONSIVE BENTO GRID (6 FEATURED APPLE PRODUCTS)
+         ========================================================================== -->
+    <section id="section-bento" class="max-w-[1440px] mx-auto px-0 md:px-3 pb-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+        <!-- CARD 1: MacBook Pro (Dark Space Black Theme) -->
+        <article class="reveal-section bg-black text-[#f5f5f7] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden relative group">
+          <div>
+            <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-[-0.02em] leading-tight">MacBook Pro</h3>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#f5f5f7]/85 max-w-[380px] mx-auto">
+              Now with M5, M5 Pro, and M5 Max.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('macbookpro')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('MacBook Pro (M5 Max)')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- Space Black MacBook Pro Liquid Retina XDR Render -->
+          <div onclick="openProductModal('macbookpro')" class="mt-8 w-full max-w-[420px] cursor-pointer transform group-hover:scale-[1.03] transition duration-500">
+            <div class="w-full aspect-[16/10] bg-[#09090b] rounded-t-2xl p-2 border border-white/20 shadow-[0_20px_60px_rgba(59,130,246,0.22)] relative overflow-hidden">
+              <div class="w-full h-full rounded-lg bg-gradient-to-br from-[#020617] via-[#1e1b4b] to-[#000000] flex flex-col items-center justify-center relative">
+                <!-- Pro XDR Spectrum Arc -->
+                <div class="w-44 h-44 rounded-full bg-gradient-to-tr from-blue-600/40 via-purple-500/40 to-amber-400/30 blur-2xl absolute"></div>
+                <span class="relative z-10 text-[11px] uppercase tracking-[0.25em] text-blue-300/80 font-semibold">Liquid Retina XDR</span>
+                <span class="relative z-10 text-[26px] font-bold tracking-tight text-white mt-1">M5 Pro · M5 Max</span>
+              </div>
+            </div>
+            <div class="w-[106%] -ml-[3%] h-3 rounded-b-xl bg-gradient-to-r from-[#18181b] via-[#3f3f46] to-[#18181b] border-t border-white/15"></div>
+          </div>
+        </article>
+
+        <!-- CARD 2: MacBook Neo (Vibrant Citrus / Light Theme) -->
+        <article class="reveal-section bg-[#f7f9e8] text-[#1d1d1f] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden relative group">
+          <div>
+            <span class="text-[#65a30d] text-[12px] font-bold uppercase tracking-wider">New</span>
+            <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-[-0.02em] leading-tight">MacBook Neo</h3>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#1d1d1f]/85">
+              Amazing Mac. Surprising price.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('macbookneo')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('MacBook Neo')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- Citrus Yellow-Green MacBook Neo Render -->
+          <div onclick="openProductModal('macbookneo')" class="mt-8 w-full max-w-[400px] cursor-pointer transform group-hover:scale-[1.03] transition duration-500">
+            <div class="w-full aspect-[16/10] bg-[#18181b] rounded-t-2xl p-2 border-2 border-[#d9f99d] shadow-xl">
+              <div class="w-full h-full rounded-lg bg-gradient-to-tr from-[#bef264] via-[#fef08a] to-[#a7f3d0] flex flex-col items-center justify-center p-4">
+                <div class="bg-white/75 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm text-[#1d1d1f] font-semibold text-[15px]">
+                  Hello, MacBook Neo ✨
+                </div>
+              </div>
+            </div>
+            <div class="w-[106%] -ml-[3%] h-3 rounded-b-xl bg-gradient-to-r from-[#a3e635] via-[#d9f99d] to-[#a3e635] shadow-md"></div>
+          </div>
+        </article>
+
+        <!-- CARD 3: Apple Watch Series 11 (Rose Gold Health Showcase) -->
+        <article class="reveal-section bg-[#fdf6f5] text-[#1d1d1f] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden group">
+          <div>
+            <div class="flex items-center justify-center gap-1.5 text-[28px] sm:text-[32px] font-bold tracking-tight">
+              <svg class="w-6 h-7 fill-current -mt-1" viewBox="0 0 17 20">
+                <path d="M13.54 10.55c-.02-2.16 1.76-3.2 1.84-3.25-1-1.47-2.56-1.67-3.11-1.69-1.32-.14-2.59.78-3.26.78-.68 0-1.72-.76-2.83-.74-1.45.02-2.79.85-3.54 2.15-1.51 2.62-.38 6.5 1.08 8.62.72 1.04 1.57 2.2 2.69 2.16 1.08-.04 1.49-.7 2.8-.7 1.3 0 1.67.7 2.81.68 1.16-.02 1.9-1.05 2.61-2.1.82-1.2 1.16-2.37 1.18-2.43-.03-.01-2.25-.86-2.27-3.48zM11.4 4.22c.6-.73 1-1.74.89-2.75-.86.04-1.91.57-2.53 1.3-.55.63-1.03 1.66-.9 2.65.96.07 1.94-.48 2.54-1.2z"/>
+              </svg>
+              <span>WATCH</span>
+              <span class="font-normal text-[#b76e79] text-[20px] tracking-widest uppercase ml-1">SERIES 11</span>
+            </div>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#1d1d1f]/85">
+              The ultimate way to watch your health.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('watch11')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('Apple Watch Series 11')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- Rose Gold Apple Watch Series 11 Render -->
+          <div onclick="openProductModal('watch11')" class="mt-6 flex flex-col items-center cursor-pointer transform group-hover:scale-105 transition duration-500">
+            <!-- Top Sport Band -->
+            <div class="w-24 h-12 rounded-t-3xl bg-gradient-to-b from-[#e8cfc9] to-[#d8b4ad] shadow-inner"></div>
+            <!-- Rose Gold Titanium/Aluminum Watch Case -->
+            <div class="w-44 h-52 rounded-[44px] bg-gradient-to-br from-[#f3d1c8] via-[#d9a398] to-[#b57c70] p-2.5 shadow-2xl relative border border-white/60">
+              <!-- Digital Crown -->
+              <div class="w-2.5 h-9 rounded-r-md bg-gradient-to-b from-[#e5b5aa] to-[#a66d61] absolute -right-2.5 top-10 shadow"></div>
+              <!-- Edge-to-Edge LTPO OLED Watch Face -->
+              <div class="w-full h-full rounded-[35px] bg-black p-3.5 flex flex-col justify-between text-white">
+                <div class="flex justify-between items-center text-[11px] font-semibold text-[#fb7185]">
+                  <span>SLEEP 94</span>
+                  <span class="text-white/90 text-[15px] font-bold">10:09</span>
+                </div>
+                <!-- Activity Rings SVG -->
+                <div class="my-auto flex items-center justify-center">
+                  <svg class="w-20 h-20" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#3f121d" stroke-width="8" fill="none"/>
+                    <circle cx="50" cy="50" r="40" stroke="#fb2d55" stroke-width="8" stroke-dasharray="210 251" stroke-linecap="round" fill="none" transform="rotate(-90 50 50)"/>
+                    <circle cx="50" cy="50" r="29" stroke="#183812" stroke-width="8" fill="none"/>
+                    <circle cx="50" cy="50" r="29" stroke="#a4ff00" stroke-width="8" stroke-dasharray="155 182" stroke-linecap="round" fill="none" transform="rotate(-90 50 50)"/>
+                    <circle cx="50" cy="50" r="18" stroke="#0d3338" stroke-width="8" fill="none"/>
+                    <circle cx="50" cy="50" r="18" stroke="#00f5ea" stroke-width="8" stroke-dasharray="95 113" stroke-linecap="round" fill="none" transform="rotate(-90 50 50)"/>
+                  </svg>
+                </div>
+                <div class="text-[11px] text-center text-emerald-400 font-medium">♥ 68 BPM · Vitals Normal</div>
+              </div>
+            </div>
+            <!-- Bottom Sport Band -->
+            <div class="w-24 h-12 rounded-b-3xl bg-gradient-to-t from-[#e8cfc9] to-[#d8b4ad] shadow-inner"></div>
+          </div>
+        </article>
+
+        <!-- CARD 4: AirPods Pro 3 (Studio White + Interactive ANC Demo) -->
+        <article class="reveal-section bg-[#f5f5f7] text-[#1d1d1f] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden group">
+          <div>
+            <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-[-0.02em] leading-tight">AirPods Pro 3</h3>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#1d1d1f]/85 max-w-[360px] mx-auto">
+              The world’s best in-ear Active Noise Cancellation.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('airpodspro3')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('AirPods Pro 3')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- Interactive ANC Wave Visualizer + Precision Sculpted Earbuds -->
+          <div class="mt-6 flex flex-col items-center w-full">
+            <div class="flex items-center justify-center gap-8 sm:gap-12 my-4">
+              <!-- Left AirPod Pro 3 -->
+              <div class="relative transform -rotate-12 group-hover:-rotate-6 transition duration-500">
+                <div class="w-20 h-16 rounded-full bg-gradient-to-br from-white via-[#f3f4f6] to-[#d1d5db] shadow-xl border border-white flex items-center justify-center">
+                  <div class="w-7 h-5 rounded-full bg-[#1f2937]"></div>
+                </div>
+                <div class="w-5 h-20 bg-gradient-to-r from-[#e5e7eb] via-white to-[#d1d5db] rounded-b-full mx-auto -mt-3 shadow-md"></div>
+              </div>
+
+              <!-- Acoustic Cancellation Pulse -->
+              <div id="ancStatusBadge" class="px-3.5 py-1.5 rounded-full bg-white shadow-sm border border-black/10 text-[12px] font-semibold text-[#0071e3] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0071e3] animate-ping"></span>
+                <span id="ancModeText">2x Active Noise Cancellation</span>
+              </div>
+
+              <!-- Right AirPod Pro 3 -->
+              <div class="relative transform rotate-12 group-hover:rotate-6 transition duration-500">
+                <div class="w-20 h-16 rounded-full bg-gradient-to-bl from-white via-[#f3f4f6] to-[#d1d5db] shadow-xl border border-white flex items-center justify-center">
+                  <div class="w-7 h-5 rounded-full bg-[#1f2937]"></div>
+                </div>
+                <div class="w-5 h-20 bg-gradient-to-l from-[#e5e7eb] via-white to-[#d1d5db] rounded-b-full mx-auto -mt-3 shadow-md"></div>
+              </div>
+            </div>
+
+            <!-- Interactive ANC Mode Toggle Pill -->
+            <div class="mt-4 inline-flex bg-black/[0.06] p-1 rounded-full text-[12px] font-medium">
+              <button onclick="setAncMode('2x Active Noise Cancellation', this)" class="anc-btn px-3.5 py-1 rounded-full bg-white shadow text-[#1d1d1f] cursor-pointer">Noise Cancellation</button>
+              <button onclick="setAncMode('Adaptive Transparency', this)" class="anc-btn px-3.5 py-1 rounded-full text-[#6e6e73] hover:text-[#1d1d1f] cursor-pointer">Transparency</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5: Studio Display XDR (Dark Theme) -->
+        <article class="reveal-section bg-black text-[#f5f5f7] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden group">
+          <div>
+            <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-[-0.02em] leading-tight">Studio Display XDR</h3>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#f5f5f7]/85">
+              Pixel sharpener.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('studiodisplayxdr')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('Studio Display XDR')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- 27-inch Pro XDR Monitor Render -->
+          <div onclick="openProductModal('studiodisplayxdr')" class="mt-8 flex flex-col items-center w-full max-w-[360px] cursor-pointer transform group-hover:scale-[1.03] transition duration-500">
+            <div class="w-full aspect-[16/10] bg-[#111] border-[6px] border-[#27272a] rounded-xl p-1.5 shadow-[0_20px_50px_rgba(236,72,153,0.2)] overflow-hidden">
+              <div class="w-full h-full rounded bg-gradient-to-tr from-[#ec4899] via-[#8b5cf6] to-[#06b6d4] flex items-center justify-center relative">
+                <div class="w-24 h-24 rotate-45 bg-white/25 backdrop-blur-md rounded-2xl border border-white/40 shadow-lg"></div>
+                <span class="absolute bottom-2 right-3 text-[10px] font-bold tracking-widest text-white/90 uppercase">6K XDR · 1600 Nits</span>
+              </div>
+            </div>
+            <!-- Aluminum Pro Stand -->
+            <div class="w-16 h-12 bg-gradient-to-b from-[#3f3f46] to-[#71717a]"></div>
+            <div class="w-32 h-2 bg-[#a1a1aa] rounded-full"></div>
+          </div>
+        </article>
+
+        <!-- CARD 6: Studio Display (Clean Light Theme) -->
+        <article class="reveal-section bg-[#f5f5f7] text-[#1d1d1f] pt-12 pb-10 px-6 text-center flex flex-col items-center justify-between min-h-[540px] overflow-hidden group">
+          <div>
+            <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-[-0.02em] leading-tight">Studio Display</h3>
+            <p class="mt-1.5 text-[18px] sm:text-[20px] text-[#1d1d1f]/85">
+              A sight to be bold.
+            </p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button onclick="openProductModal('studiodisplay')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+              <button onclick="openWhereToBuyModal('Studio Display')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+            </div>
+          </div>
+
+          <!-- 27-inch 5K Retina Studio Display Render -->
+          <div onclick="openProductModal('studiodisplay')" class="mt-8 flex flex-col items-center w-full max-w-[360px] cursor-pointer transform group-hover:scale-[1.03] transition duration-500">
+            <div class="w-full aspect-[16/10] bg-[#18181b] border-[6px] border-[#d4d4d8] rounded-xl p-1.5 shadow-xl overflow-hidden">
+              <div class="w-full h-full rounded bg-gradient-to-br from-[#fb923c] via-[#f43f5e] to-[#3b82f6] flex items-center justify-center relative">
+                <div class="w-36 h-16 rounded-full bg-white/30 backdrop-blur-md border border-white/50 flex items-center justify-center text-white font-semibold text-sm">
+                  5K Retina Display
+                </div>
+              </div>
+            </div>
+            <div class="w-16 h-12 bg-gradient-to-b from-[#a1a1aa] to-[#e4e4e7]"></div>
+            <div class="w-32 h-2 bg-[#d4d4d8] rounded-full"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. APPLE ENTERTAINMENT & SERVICES INTERACTIVE CAROUSEL
+         ========================================================================== -->
+    <section id="section-entertainment" class="reveal-section bg-[#fbfbfd] py-10 overflow-hidden">
+      <div class="max-w-[1280px] mx-auto px-4">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-[24px] sm:text-[32px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
+            Endless entertainment.
+          </h2>
+          <div class="flex items-center gap-2">
+            <button onclick="moveCarousel(-1)" aria-label="Previous slide" class="w-9 h-9 rounded-full bg-[#e8e8ed] hover:bg-[#d2d2d7] flex items-center justify-center text-[#1d1d1f] transition cursor-pointer">‹</button>
+            <button onclick="moveCarousel(1)" aria-label="Next slide" class="w-9 h-9 rounded-full bg-[#e8e8ed] hover:bg-[#d2d2d7] flex items-center justify-center text-[#1d1d1f] transition cursor-pointer">›</button>
+          </div>
+        </div>
+
+        <!-- Horizontal Showcase Cards -->
+        <div class="overflow-hidden rounded-3xl">
+          <div id="entertainmentTrack" class="carousel-track">
+            <!-- Slide 1: Apple TV+ -->
+            <div class="min-w-[85%] md:min-w-[62%] h-[360px] sm:h-[440px] rounded-3xl bg-gradient-to-tr from-[#090d16] via-[#1e293b] to-[#0f172a] p-8 sm:p-12 flex flex-col justify-between text-white relative overflow-hidden shrink-0">
+              <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-sky-500/20 blur-3xl"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-[22px] font-bold tracking-tight">tv+</span>
+                <span class="px-3 py-1 rounded-full bg-white/15 text-[12px] font-medium backdrop-blur-md">Apple Original</span>
+              </div>
+              <div>
+                <p class="text-[13px] uppercase tracking-[0.2em] text-sky-400 font-semibold">Sci-Fi · Thriller</p>
+                <h3 class="text-[28px] sm:text-[40px] font-bold tracking-tight mt-1">SEVERANCE</h3>
+                <p class="text-white/80 text-[15px] sm:text-[17px] max-w-md mt-1">Stream critically acclaimed Apple Originals in 4K Dolby Vision.</p>
+                <button onclick="openWhereToBuyModal('Apple TV 4K & Services')" class="mt-5 bg-white text-black font-medium text-[14px] px-5 py-2.5 rounded-full hover:bg-gray-100 transition cursor-pointer">
+                  Stream now
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide 2: Apple Music -->
+            <div class="min-w-[85%] md:min-w-[62%] h-[360px] sm:h-[440px] rounded-3xl bg-gradient-to-tr from-[#be123c] via-[#e11d48] to-[#fb7185] p-8 sm:p-12 flex flex-col justify-between text-white relative overflow-hidden shrink-0">
+              <div class="flex items-center justify-between">
+                <span class="text-[22px] font-bold tracking-tight">Music</span>
+                <span class="px-3 py-1 rounded-full bg-black/20 text-[12px] font-medium">Spatial Audio</span>
+              </div>
+              <div>
+                <p class="text-[13px] uppercase tracking-[0.2em] text-rose-100 font-semibold">Lossless · Dolby Atmos</p>
+                <h3 class="text-[28px] sm:text-[40px] font-bold tracking-tight mt-1">100 Million Songs.</h3>
+                <p class="text-white/90 text-[15px] sm:text-[17px] max-w-md mt-1">Hear sound all around you with Spatial Audio and curated playlists for Uzbekistan.</p>
+                <button onclick="openWhereToBuyModal('Apple Music Uzbekistan')" class="mt-5 bg-white text-[#be123c] font-semibold text-[14px] px-5 py-2.5 rounded-full hover:bg-rose-50 transition cursor-pointer">
+                  Listen now
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide 3: Apple Arcade -->
+            <div class="min-w-[85%] md:min-w-[62%] h-[360px] sm:h-[440px] rounded-3xl bg-gradient-to-tr from-[#312e81] via-[#4f46e5] to-[#06b6d4] p-8 sm:p-12 flex flex-col justify-between text-white relative overflow-hidden shrink-0">
+              <div class="flex items-center justify-between">
+                <span class="text-[22px] font-bold tracking-tight">Arcade</span>
+                <span class="px-3 py-1 rounded-full bg-white/15 text-[12px] font-medium">Zero Ads</span>
+              </div>
+              <div>
+                <p class="text-[13px] uppercase tracking-[0.2em] text-cyan-200 font-semibold">200+ Hit Games</p>
+                <h3 class="text-[28px] sm:text-[40px] font-bold tracking-tight mt-1">Play Without Limits.</h3>
+                <p class="text-white/90 text-[15px] sm:text-[17px] max-w-md mt-1">No ads. No in-app purchases. Play across iPhone, iPad, Mac, and Apple TV.</p>
+                <button onclick="openWhereToBuyModal('Apple Arcade')" class="mt-5 bg-white text-[#312e81] font-semibold text-[14px] px-5 py-2.5 rounded-full hover:bg-indigo-50 transition cursor-pointer">
+                  Explore Arcade
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Dots & Play/Pause Control -->
+        <div class="mt-5 flex items-center justify-center gap-3">
+          <div class="flex items-center gap-2">
+            <button onclick="goToSlide(0)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-[#1d1d1f] transition cursor-pointer"></button>
+            <button onclick="goToSlide(1)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-[#d2d2d7] transition cursor-pointer"></button>
+            <button onclick="goToSlide(2)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-[#d2d2d7] transition cursor-pointer"></button>
+          </div>
+          <button id="carouselPlayPauseBtn" onclick="toggleCarouselAutoplay()" aria-label="Pause or play carousel"
+            class="ml-3 w-7 h-7 rounded-full border border-black/20 flex items-center justify-center text-[11px] text-[#1d1d1f] hover:bg-black/5 cursor-pointer">
+            ❚❚
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       8. AUTHENTIC APPLE UZBEKISTAN DIRECTORY FOOTER
+       ========================================================================== -->
+  <footer id="footer" class="bg-[#f5f5f7] text-[#6e6e73] text-[12px] leading-[1.33337] border-t border-black/[0.08]">
+    <div class="max-w-[1024px] mx-auto px-4 pt-6 pb-8">
+      <!-- Regional Disclaimer (Exact copy from apple.com/uz/) -->
+      <div class="pb-5 border-b border-black/[0.08] space-y-2 text-[#6e6e73]">
+        <p>1. Products, services, and OS functions may not be available in this country.</p>
+        <p>2. Apple Intelligence is available in beta on iPhone 17 Pro, iPhone Air, iPhone 17, iPhone 17e, iPhone 16 models, and iPad and Mac models with M1 and later.</p>
+        <p>3. Authorized Apple Resellers in Uzbekistan provide official warranty, trade-in consultation, and certified technical support in Tashkent, Samarkand, and Bukhara.</p>
+      </div>
+
+      <!-- 5-Column Directory -->
+      <div class="py-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-[#424245]">
+        <div>
+          <h4 class="font-semibold text-[#1d1d1f] mb-2.5">Explore</h4>
+          <ul class="space-y-2">
+            <li><a href="#section-macbook-air" class="hover:underline">Mac</a></li>
+            <li><a href="#section-ipad-air" class="hover:underline">iPad</a></li>
+            <li><a href="#section-iphone-17-pro" class="hover:underline">iPhone</a></li>
+            <li><a href="#section-bento" class="hover:underline">Watch</a></li>
+            <li><a href="#section-bento" class="hover:underline">AirPods</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">TV & Home</a></li>
+            <li><a href="#section-bento" class="hover:underline">Displays</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-[#1d1d1f] mb-2.5">Account</h4>
+          <ul class="space-y-2">
+            <li><a href="#top" onclick="openProductModal('iphone17pro')" class="hover:underline">Manage Your Apple Account</a></li>
+            <li><a href="#top" onclick="openProductModal('macbookair')" class="hover:underline">iCloud.com</a></li>
+          </ul>
+          <h4 class="font-semibold text-[#1d1d1f] mt-5 mb-2.5">Entertainment</h4>
+          <ul class="space-y-2">
+            <li><a href="#section-entertainment" class="hover:underline">Apple TV+</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">Apple Music</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">Apple Arcade</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">Apple Podcasts</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">Apple Books</a></li>
+            <li><a href="#section-entertainment" class="hover:underline">App Store</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-[#1d1d1f] mb-2.5">Where to Buy</h4>
+          <ul class="space-y-2">
+            <li><button onclick="openWhereToBuyModal()" class="hover:underline text-left text-[#0066cc]">Find an Authorized Reseller</button></li>
+            <li><button onclick="openWhereToBuyModal()" class="hover:underline text-left">Tashkent Stores</button></li>
+            <li><button onclick="openWhereToBuyModal()" class="hover:underline text-left">Samarkand Stores</button></li>
+            <li><button onclick="openWhereToBuyModal()" class="hover:underline text-left">Service & Support Centers</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-[#1d1d1f] mb-2.5">For Business</h4>
+          <ul class="space-y-2">
+            <li><a href="#section-macbook-air" class="hover:underline">Apple and Business</a></li>
+            <li><button onclick="openWhereToBuyModal('Enterprise Solutions')" class="hover:underline text-left">Shop for Business in Uzbekistan</button></li>
+          </ul>
+          <h4 class="font-semibold text-[#1d1d1f] mt-5 mb-2.5">Apple Values</h4>
+          <ul class="space-y-2">
+            <li><a href="#top" class="hover:underline">Accessibility</a></li>
+            <li><a href="#top" class="hover:underline">Environment</a></li>
+            <li><a href="#top" class="hover:underline">Privacy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-[#1d1d1f] mb-2.5">About Apple</h4>
+          <ul class="space-y-2">
+            <li><a href="#top" class="hover:underline">Newsroom</a></li>
+            <li><a href="#top" class="hover:underline">Apple Leadership</a></li>
+            <li><a href="#top" class="hover:underline">Career Opportunities</a></li>
+            <li><a href="#top" class="hover:underline">Investors</a></li>
+            <li><a href="#top" class="hover:underline">Ethics & Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Legal & Uzbekistan Locale Strip -->
+      <div class="pt-4 border-t border-black/[0.08] flex flex-col gap-2">
+        <p>
+          More ways to shop:
+          <button onclick="openWhereToBuyModal()" class="text-[#0066cc] hover:underline font-medium cursor-pointer">
+            Find a retailer
+          </button>
+          near you in Uzbekistan.
+        </p>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+          <p>Copyright © 2026 Apple Inc. All rights reserved.</p>
+          <div class="flex flex-wrap items-center gap-3 text-[#424245]">
+            <a href="#footer" class="hover:underline">Privacy Policy</a>
+            <span>|</span>
+            <a href="#footer" class="hover:underline">Terms of Use</a>
+            <span>|</span>
+            <a href="#footer" class="hover:underline">Legal</a>
+            <span>|</span>
+            <a href="#footer" class="hover:underline">Site Map</a>
+          </div>
+          <button onclick="document.getElementById('regionBanner').style.display='block'; window.scrollTo({top:0, behavior:'smooth'});"
+            class="text-[#1d1d1f] font-medium hover:underline text-left sm:text-right cursor-pointer">
+            Uzbekistan
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       9. MODAL 1: WHERE TO BUY IN UZBEKISTAN (AUTHORIZED RESELLERS FINDER)
+       ========================================================================== -->
+  <div id="whereToBuyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-md p-4">
+    <div class="bg-white rounded-3xl max-w-[680px] w-full max-h-[88vh] overflow-y-auto shadow-2xl border border-black/10 p-6 sm:p-8 relative animate-[fadeIn_0.25s_ease]">
+      <button onclick="closeModal('whereToBuyModal')" aria-label="Close modal"
+        class="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e5e5ea] flex items-center justify-center text-[#1d1d1f] cursor-pointer">
+        ✕
+      </button>
+
+      <span class="text-[12px] font-semibold uppercase tracking-wider text-[#0071e3]">Official Apple Channel · Uzbekistan</span>
+      <h3 class="text-[26px] sm:text-[32px] font-semibold tracking-tight text-[#1d1d1f] mt-1">
+        Where to Buy <span id="selectedProductForStore" class="text-[#0071e3]">Apple Products</span>
+      </h3>
+      <p class="text-[14px] text-[#6e6e73] mt-1">
+        Purchase genuine Apple hardware with official warranty from Authorized Resellers across Uzbekistan.
+      </p>
+
+      <!-- City Filter Tabs -->
+      <div class="mt-5 flex flex-wrap gap-2">
+        <button onclick="filterStores('all', this)" class="store-filter-btn px-4 py-1.5 rounded-full text-[13px] font-medium bg-[#1d1d1f] text-white cursor-pointer">All Cities</button>
+        <button onclick="filterStores('Tashkent', this)" class="store-filter-btn px-4 py-1.5 rounded-full text-[13px] font-medium bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed] cursor-pointer">Tashkent</button>
+        <button onclick="filterStores('Samarkand', this)" class="store-filter-btn px-4 py-1.5 rounded-full text-[13px] font-medium bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed] cursor-pointer">Samarkand</button>
+        <button onclick="filterStores('Bukhara', this)" class="store-filter-btn px-4 py-1.5 rounded-full text-[13px] font-medium bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed] cursor-pointer">Bukhara</button>
+      </div>
+
+      <!-- Authorized Resellers List -->
+      <div id="storesList" class="mt-5 space-y-3">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       10. MODAL 2: INTERACTIVE PRODUCT TECH SPECS & QUICK VIEW
+       ========================================================================== -->
+  <div id="productDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/55 backdrop-blur-md p-4">
+    <div id="productModalCard" class="bg-white rounded-3xl max-w-[640px] w-full max-h-[88vh] overflow-y-auto shadow-2xl border border-black/10 p-6 sm:p-8 relative">
+      <button onclick="closeModal('productDetailModal')" aria-label="Close product details"
+        class="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e5e5ea] flex items-center justify-center text-[#1d1d1f] cursor-pointer">
+        ✕
+      </button>
+      <div id="productModalBody">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       11. MODAL 3: APPLE SEARCH OVERLAY
+       ========================================================================== -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 hidden bg-black/45 backdrop-blur-md">
+    <div class="bg-[#fbfbfd] w-full py-10 px-4 shadow-2xl border-b border-black/10">
+      <div class="max-w-[680px] mx-auto relative">
+        <div class="flex items-center gap-3 border-b border-black/15 pb-3">
+          <svg class="w-5 h-5 text-[#6e6e73]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7.5"/>
+            <path stroke-linecap="round" d="M20.5 20.5l-4.2-4.2"/>
+          </svg>
+          <input id="appleSearchInput" oninput="filterQuickLinks(this.value)" type="text" placeholder="Search apple.com/uz"
+            class="w-full bg-transparent text-[20px] sm:text-[24px] font-medium text-[#1d1d1f] placeholder-[#86868b] focus:outline-none" />
+          <button onclick="closeModal('searchOverlay')" class="text-[#6e6e73] hover:text-[#1d1d1f] text-lg px-2 cursor-pointer">✕</button>
+        </div>
+
+        <div class="mt-6">
+          <p class="text-[12px] font-semibold uppercase tracking-wider text-[#6e6e73] mb-3">Quick Links</p>
+          <ul id="searchQuickLinks" class="space-y-2.5 text-[14px] font-medium text-[#1d1d1f]">
+            <li><button onclick="closeModal('searchOverlay'); openProductModal('iphone17pro')" class="hover:text-[#0071e3] flex items-center gap-2 cursor-pointer">→ iPhone 17 Pro & iPhone Air</button></li>
+            <li><button onclick="closeModal('searchOverlay'); openProductModal('macbookair')" class="hover:text-[#0071e3] flex items-center gap-2 cursor-pointer">→ MacBook Air with M5</button></li>
+            <li><button onclick="closeModal('searchOverlay'); openProductModal('ipadair')" class="hover:text-[#0071e3] flex items-center gap-2 cursor-pointer">→ iPad Air with M4</button></li>
+            <li><button onclick="closeModal('searchOverlay'); openProductModal('macbookneo')" class="hover:text-[#0071e3] flex items-center gap-2 cursor-pointer">→ MacBook Neo</button></li>
+            <li><button onclick="closeModal('searchOverlay'); openWhereToBuyModal()" class="hover:text-[#0071e3] flex items-center gap-2 cursor-pointer">→ Authorized Apple Resellers in Uzbekistan</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: INTERACTIVITY, MEGA MENUS, UZBEKISTAN STORES, CAROUSEL & I18N
+       ========================================================================== -->
+  <script>
+    // 1. Mega Menu Data (Exact apple.com/uz/ lineup)
+    const MEGA_MENUS = {
+      mac: {
+        title: "Explore Mac",
+        items: ["Explore All Mac", "MacBook Air (M5)", "MacBook Pro (M5 / Pro / Max)", "MacBook Neo", "iMac", "Mac mini", "Mac Studio", "Displays"],
+        quick: ["Compare Mac", "Why Mac", "Where to Buy Mac in Uzbekistan"],
+        highlight: { name: "MacBook Air M5", desc: "Strikingly thin and fast. Now in Sky Blue.", target: "macbookair" }
+      },
+      ipad: {
+        title: "Explore iPad",
+        items: ["Explore All iPad", "iPad Pro", "iPad Air (M4)", "iPad", "iPad mini", "Apple Pencil Pro", "Magic Keyboard"],
+        quick: ["Compare iPad", "Why iPad", "Where to Buy iPad in Uzbekistan"],
+        highlight: { name: "iPad Air M4", desc: "Two sizes. Faster chip. Does it all.", target: "ipadair" }
+      },
+      iphone: {
+        title: "Explore iPhone",
+        items: ["Explore All iPhone", "iPhone 17 Pro", "iPhone Air", "iPhone 17", "iPhone 17e", "iPhone 16"],
+        quick: ["Compare iPhone", "Switch from Android", "Where to Buy iPhone in Uzbekistan"],
+        highlight: { name: "iPhone 17 Pro", desc: "Titanium. A19 Pro. Pro Fusion cameras.", target: "iphone17pro" }
+      },
+      watch: {
+        title: "Explore Watch",
+        items: ["Explore All Apple Watch", "Apple Watch Series 11", "Apple Watch Ultra 3", "Apple Watch SE 3"],
+        quick: ["Compare Watch", "Why Apple Watch", "Where to Buy Watch"],
+        highlight: { name: "Apple Watch Series 11", desc: "Thinnest case. Advanced health insights.", target: "watch11" }
+      },
+      airpods: {
+        title: "Explore AirPods",
+        items: ["Explore All AirPods", "AirPods Pro 3", "AirPods 4", "AirPods Max"],
+        quick: ["Compare AirPods", "Where to Buy AirPods"],
+        highlight: { name: "AirPods Pro 3", desc: "2x Active Noise Cancellation & Adaptive Audio.", target: "airpodspro3" }
+      },
+      tv: {
+        title: "Explore TV & Home",
+        items: ["Explore TV & Home", "Apple TV 4K", "HomePod", "HomePod mini"],
+        quick: ["Apple TV app", "Apple TV+", "Siri"],
+        highlight: { name: "Apple TV 4K", desc: "The Apple experience. Cinematic in every sense.", target: "studiodisplayxdr" }
+      },
+      entertainment: {
+        title: "Explore Entertainment",
+        items: ["Apple TV+", "Apple Music", "Apple Arcade", "Apple Podcasts", "Apple Books", "App Store"],
+        quick: ["Support for Services", "Redeem Gift Card"],
+        highlight: { name: "Apple TV+", desc: "Award-winning Apple Originals.", target: "iphone17pro" }
+      },
+      support: {
+        title: "Explore Support",
+        items: ["iPhone Support", "Mac Support", "iPad Support", "Watch Support", "AirPods Support", "Music Support"],
+        quick: ["Authorized Service Providers in Uzbekistan", "Check Coverage", "Apple Account"],
+        highlight: { name: "Official Support UZ", desc: "Certified repairs and genuine Apple parts.", target: "macbookpro" }
+      }
+    };
+
+    function openMegaMenu(category) {
+      const data = MEGA_MENUS[category];
+      if (!data) return;
+
+      const drawer = document.getElementById("megaMenuDrawer");
+      const content = document.getElementById("megaMenuContent");
+      const dimmer = document.getElementById("pageDimmer");
+
+      content.innerHTML = `
+        <div>
+          <p class="text-[12px] text-[#6e6e73] mb-3">${data.title}</p>
+          <ul class="space-y-2 text-[20px] font-semibold tracking-tight text-[#1d1d1f]">
+            ${data.items.map(item => `
+              <li>
+                <button onclick="closeMegaMenu(); openProductModal('${data.highlight.target}')" class="hover:text-[#0071e3] transition text-left cursor-pointer">
+                  ${item}
+                </button>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+        <div>
+          <p class="text-[12px] text-[#6e6e73] mb-3">Quick Links</p>
+          <ul class="space-y-2.5 text-[13px] font-medium text-[#1d1d1f]">
+            ${data.quick.map(q => `
+              <li>
+                <button onclick="closeMegaMenu(); openWhereToBuyModal()" class="hover:text-[#0071e3] transition text-left cursor-pointer">
+                  ${q}
+                </button>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+        <div class="bg-[#f5f5f7] rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-[#0071e3]">Featured</span>
+            <h4 class="text-[20px] font-semibold text-[#1d1d1f] mt-1">${data.highlight.name}</h4>
+            <p class="text-[13px] text-[#6e6e73] mt-1">${data.highlight.desc}</p>
+          </div>
+          <div class="mt-5 flex gap-2">
+            <button onclick="closeMegaMenu(); openProductModal('${data.highlight.target}')" class="btn-apple-primary btn-apple-sm">Learn more</button>
+            <button onclick="closeMegaMenu(); openWhereToBuyModal('${data.highlight.name}')" class="btn-apple-outline btn-apple-sm">Where to Buy</button>
+          </div>
+        </div>
+      `;
+
+      drawer.classList.add("open");
+      dimmer.classList.add("active");
+    }
+
+    function closeMegaMenu() {
+      document.getElementById("megaMenuDrawer").classList.remove("open");
+      document.getElementById("pageDimmer").classList.remove("active");
+    }
+
+    // 2. Product Specifications Database for Quick-View Modal
+    const PRODUCTS = {
+      iphone17pro: {
+        badge: "New · Titanium",
+        name: "iPhone 17 Pro",
+        tagline: "Meet the latest iPhone lineup.",
+        chip: "A19 Pro Chip with 6-core GPU",
+        specs: [
+          "6.3-inch or 6.9-inch Super Retina XDR display with ProMotion 120Hz",
+          "48MP Pro Fusion camera system (Main, Ultra Wide, 5x Tetraprism Telephoto)",
+          "Aerospace-grade Titanium chassis in Deep Blue, Natural, Desert & Black",
+          "Built for Apple Intelligence with next-gen Neural Engine"
+        ]
+      },
+      ipadair: {
+        badge: "Supercharged by M4",
+        name: "iPad Air",
+        tagline: "Now supercharged by M4.",
+        chip: "Apple M4 Silicon (9-core GPU)",
+        specs: [
+          "Available in portable 11-inch and expansive 13-inch Liquid Retina displays",
+          "Blazing-fast M4 performance for AI workflows, 3D rendering, and gaming",
+          "Supports Apple Pencil Pro with squeeze, barrel roll, and haptic feedback",
+          "Landscape 12MP Center Stage front camera and Wi-Fi 7"
+        ]
+      },
+      macbookair: {
+        badge: "New Sky Blue Finish",
+        name: "MacBook Air",
+        tagline: "Now supercharged by M5.",
+        chip: "Apple M5 Chip · Up to 18 hours battery",
+        specs: [
+          "Available in 13-inch and 15-inch Liquid Retina displays with 1 billion colors",
+          "Silent, fanless aluminum enclosure just 11.3 mm thin",
+          "12MP Center Stage camera with Desk View and Spatial Audio",
+          "Two Thunderbolt ports plus MagSafe 3 charging"
+        ]
+      },
+      macbookpro: {
+        badge: "Pro Performance",
+        name: "MacBook Pro",
+        tagline: "Now with M5, M5 Pro, and M5 Max.",
+        chip: "M5 · M5 Pro · M5 Max",
+        specs: [
+          "14-inch and 16-inch Liquid Retina XDR display with up to 1,600 nits peak HDR",
+          "Up to 24 hours of battery life — the longest ever in a Mac",
+          "Thunderbolt 5 ports, HDMI, SDXC card slot, and MagSafe 3",
+          "Available in Space Black and Silver"
+        ]
+      },
+      macbookneo: {
+        badge: "New",
+        name: "MacBook Neo",
+        tagline: "Amazing Mac. Surprising price.",
+        chip: "Apple Silicon Efficiency Architecture",
+        specs: [
+          "Ultra-lightweight colorful design in Citrus, Sky, and Silver",
+          "Crisp 13-inch Retina display with True Tone technology",
+          "All-day battery life for students, creators, and everyday tasks",
+          "Seamless integration with iPhone and iCloud"
+        ]
+      },
+      watch11: {
+        badge: "Series 11",
+        name: "Apple Watch Series 11",
+        tagline: "The ultimate way to watch your health.",
+        chip: "S11 SiP · Wide-Angle OLED",
+        specs: [
+          "Thinnest Apple Watch ever with our largest, brightest display",
+          "Sleep Score, Vitals app, ECG, and heart rate notifications",
+          "50m water resistance and depth gauge for swimming and snorkeling",
+          "Fast charging: up to 80% battery in 30 minutes"
+        ]
+      },
+      airpodspro3: {
+        badge: "Pro Audio",
+        name: "AirPods Pro 3",
+        tagline: "The world’s best in-ear Active Noise Cancellation.",
+        chip: "H3 Acoustic Chip · Lossless Audio",
+        specs: [
+          "Up to 2x more Active Noise Cancellation than previous generation",
+          "Adaptive Audio, Transparency mode, and Conversation Awareness",
+          "Clinical-grade Hearing Health features and Personalized Spatial Audio",
+          "Dust, sweat, and water resistant (IP54) with USB-C MagSafe Case"
+        ]
+      },
+      studiodisplayxdr: {
+        badge: "Pro Display",
+        name: "Studio Display XDR",
+        tagline: "Pixel sharpener.",
+        chip: "27-inch 6K Retina XDR · 120Hz",
+        specs: [
+          "27-inch 6K Retina XDR panel with Extreme Dynamic Range",
+          "1,600 nits peak HDR brightness and 1,000,000:1 contrast ratio",
+          "Available with Standard glass or Nano-texture glass",
+          "12MP Center Stage camera and studio-quality six-speaker sound system"
+        ]
+      },
+      studiodisplay: {
+        badge: "5K Retina",
+        name: "Studio Display",
+        tagline: "A sight to be bold.",
+        chip: "27-inch 5K Retina · 600 Nits",
+        specs: [
+          "14.7 million pixels with P3 wide color and True Tone",
+          "12MP Ultra Wide camera with Center Stage",
+          "Three studio-quality mics and six-speaker Spatial Audio system",
+          "Pairs seamlessly with MacBook Air, MacBook Pro, and Mac mini"
+        ]
+      }
+    };
+
+    function openProductModal(key) {
+      const p = PRODUCTS[key];
+      if (!p) return;
+
+      const body = document.getElementById("productModalBody");
+      body.innerHTML = `
+        <span class="text-[12px] font-semibold uppercase tracking-wider text-[#0071e3]">${p.badge}</span>
+        <h3 class="text-[32px] sm:text-[38px] font-semibold tracking-tight text-[#1d1d1f] mt-1">${p.name}</h3>
+        <p class="text-[18px] text-[#6e6e73] mt-1">${p.tagline}</p>
+
+        <div class="mt-5 p-4 rounded-2xl bg-[#f5f5f7] border border-black/5 flex items-center justify-between">
+          <span class="text-[13px] font-medium text-[#6e6e73]">Architecture</span>
+          <span class="text-[14px] font-semibold text-[#1d1d1f]">${p.chip}</span>
+        </div>
+
+        <ul class="mt-5 space-y-3 text-[15px] text-[#1d1d1f]">
+          ${p.specs.map(s => `
+            <li class="flex items-start gap-2.5">
+              <span class="text-[#0071e3] font-bold mt-0.5">✓</span>
+              <span>${s}</span>
+            </li>
+          `).join("")}
+        </ul>
+
+        <div class="mt-7 pt-5 border-t border-black/10 flex flex-wrap items-center justify-between gap-3">
+          <span class="text-[13px] text-[#6e6e73]">Available via Authorized Resellers in Uzbekistan</span>
+          <button onclick="closeModal('productDetailModal'); openWhereToBuyModal('${p.name}')" class="btn-apple-primary">
+            Where to Buy
+          </button>
+        </div>
+      `;
+
+      const modal = document.getElementById("productDetailModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    // 3. Authorized Resellers in Uzbekistan Database
+    const UZ_STORES = [
+      {
+        name: "iSpace — Apple Premium Partner",
+        city: "Tashkent",
+        address: "Tashkent City Mall, 1st Floor, Shaykhontohur District",
+        hours: "10:00 – 22:00",
+        badge: "Apple Premium Partner"
+      },
+      {
+        name: "iSpace — Magic City",
+        city: "Tashkent",
+        address: "Bobur Street 174, Magic City Park, Tashkent",
+        hours: "10:00 – 22:00",
+        badge: "Authorized Reseller & Service"
+      },
+      {
+        name: "Mediapark — Qoratosh Flagship",
+        city: "Tashkent",
+        address: "Qoratosh Street 11A, Tashkent",
+        hours: "09:00 – 21:00",
+        badge: "Authorized Reseller"
+      },
+      {
+        name: "iSpace Samarkand — Family Park",
+        city: "Samarkand",
+        address: "Narpay Street 76, Family Park Mall, Samarkand",
+        hours: "10:00 – 22:00",
+        badge: "Authorized Reseller"
+      },
+      {
+        name: "Idea Store — Bukhara Center",
+        city: "Bukhara",
+        address: "Mustaqillik Street 18, Bukhara",
+        hours: "09:00 – 21:00",
+        badge: "Authorized Reseller"
+      }
+    ];
+
+    function renderStores(cityFilter = "all") {
+      const container = document.getElementById("storesList");
+      const filtered = cityFilter === "all"
+        ? UZ_STORES
+        : UZ_STORES.filter(s => s.city === cityFilter);
+
+      container.innerHTML = filtered.map(store => `
+        <div class="p-4 rounded-2xl bg-[#f5f5f7] hover:bg-[#ececf0] transition border border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="text-[16px] font-semibold text-[#1d1d1f]">${store.name}</h4>
+              <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white text-[#0071e3] border border-black/10">
+                ${store.badge}
+              </span>
+            </div>
+            <p class="text-[13px] text-[#424245] mt-1">${store.address}</p>
+            <p class="text-[12px] text-[#6e6e73] mt-0.5">City: ${store.city} · Open daily: ${store.hours}</p>
+          </div>
+          <span class="text-[13px] font-medium text-[#0066cc] shrink-0">In Stock ✓</span>
+        </div>
+      `).join("");
+    }
+
+    function filterStores(city, btn) {
+      document.querySelectorAll(".store-filter-btn").forEach(b => {
+        b.classList.remove("bg-[#1d1d1f]", "text-white");
+        b.classList.add("bg-[#f5f5f7]", "text-[#1d1d1f]");
+      });
+      btn.classList.remove("bg-[#f5f5f7]", "text-[#1d1d1f]");
+      btn.classList.add("bg-[#1d1d1f]", "text-white");
+      renderStores(city);
+    }
+
+    function openWhereToBuyModal(productName = "Apple Products") {
+      document.getElementById("selectedProductForStore").textContent = productName;
+      renderStores("all");
+      const modal = document.getElementById("whereToBuyModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add("hidden");
+      el.classList.remove("flex");
+    }
+
+    // 4. Interactive iPhone 17 Pro Titanium Color Switcher
+    function setIphoneFinish(finishKey, label, glowHex) {
+      const chassis = document.getElementById("iphoneChassis");
+      chassis.classList.remove("iphone-finish-deepblue", "iphone-finish-natural", "iphone-finish-desert", "iphone-finish-black");
+      chassis.classList.add("iphone-finish-" + finishKey);
+      document.getElementById("iphoneFinishLabel").textContent = label;
+      document.getElementById("iphoneAmbientGlow").style.backgroundColor = glowHex;
+    }
+
+    // 5. AirPods Pro 3 ANC / Transparency Toggle
+    function setAncMode(modeLabel, btn) {
+      document.getElementById("ancModeText").textContent = modeLabel;
+      document.querySelectorAll(".anc-btn").forEach(b => {
+        b.classList.remove("bg-white", "shadow", "text-[#1d1d1f]");
+        b.classList.add("text-[#6e6e73]");
+      });
+      btn.classList.add("bg-white", "shadow", "text-[#1d1d1f]");
+      btn.classList.remove("text-[#6e6e73]");
+    }
+
+    // 6. Search Overlay & Quick Links Filter
+    function openSearchOverlay() {
+      const overlay = document.getElementById("searchOverlay");
+      overlay.classList.remove("hidden");
+      setTimeout(() => document.getElementById("appleSearchInput").focus(), 50);
+    }
+
+    function filterQuickLinks(query) {
+      const q = query.toLowerCase();
+      document.querySelectorAll("#searchQuickLinks li").forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(q) ? "block" : "none";
+      });
+    }
+
+    // 7. Entertainment Carousel Controls
+    let currentSlide = 0;
+    let carouselPlaying = true;
+    let carouselInterval;
+
+    function goToSlide(index) {
+      const total = 3;
+      currentSlide = (index + total) % total;
+      const track = document.getElementById("entertainmentTrack");
+      const offsetPercent = window.innerWidth >= 768 ? currentSlide * 63.5 : currentSlide * 87;
+      track.style.transform = `translateX(-${offsetPercent}%)`;
+
+      document.querySelectorAll(".carousel-dot").forEach((dot, idx) => {
+        dot.style.backgroundColor = idx === currentSlide ? "#1d1d1f" : "#d2d2d7";
+      });
+    }
+
+    function moveCarousel(delta) {
+      goToSlide(currentSlide + delta);
+    }
+
+    function toggleCarouselAutoplay() {
+      const btn = document.getElementById("carouselPlayPauseBtn");
+      if (carouselPlaying) {
+        clearInterval(carouselInterval);
+        btn.textContent = "▶";
+      } else {
+        startCarouselAutoplay();
+        btn.textContent = "❚❚";
+      }
+      carouselPlaying = !carouselPlaying;
+    }
+
+    function startCarouselAutoplay() {
+      carouselInterval = setInterval(() => moveCarousel(1), 4500);
+    }
+
+    // 8. Bilingual EN / O'Z Switcher
+    let currentLang = "en";
+    function toggleLanguage() {
+      currentLang = currentLang === "en" ? "uz" : "en";
+      const isUz = currentLang === "uz";
+
+      document.getElementById("hero1Subtitle").textContent = isUz
+        ? "Eng yangi iPhone turkumi bilan tanishing."
+        : "Meet the latest iPhone lineup.";
+      document.getElementById("hero2Subtitle").textContent = isUz
+        ? "Endi M4 chipi bilan yanada kuchli."
+        : "Now supercharged by M4.";
+      document.getElementById("hero3Subtitle").textContent = isUz
+        ? "Endi M5 chipi bilan yanada kuchli."
+        : "Now supercharged by M5.";
+
+      document.querySelectorAll('[data-i18n="learnMore"]').forEach(el => {
+        el.textContent = isUz ? "Batafsil" : "Learn more";
+      });
+      document.querySelectorAll('[data-i18n="whereToBuy"]').forEach(el => {
+        el.textContent = isUz ? "Qayerdan sotib olish" : "Where to Buy";
+      });
+    }
+
+    // 9. Region Banner & Mobile Drawer
+    function dismissRegionBanner() {
+      document.getElementById("regionBanner").style.display = "none";
+    }
+
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById("mobileMenuDrawer");
+      drawer.classList.toggle("hidden");
+      drawer.classList.toggle("flex");
+    }
+
+    // 10. IntersectionObserver Scroll Reveal + Window Onload
+    window.addEventListener("load", () => {
+      startCarouselAutoplay();
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(".reveal-section").forEach(section => {
+        observer.observe(section);
+      });
+    });
+
+    // Close modals on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeMegaMenu();
+        closeModal("whereToBuyModal");
+        closeModal("productDetailModal");
+        closeModal("searchOverlay");
+      }
+    });
+  </script>
+</body>
+</html>
